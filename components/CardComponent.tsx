@@ -26,10 +26,16 @@ const CardComponent = ({ title, content, isProcessed }: CardProps) => {
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent className="h-[640px] w-[540px] overflow-x-auto p-4">
-        {isProcessed ? (
-          <ProcessedTreeView data={content} />
+        {content === null ? (
+          <>Please Input a Query</>
         ) : (
-          <>{renderContent()}</>
+          <>
+            {isProcessed ? (
+              <ProcessedTreeView data={content} />
+            ) : (
+              <>{renderContent()}</>
+            )}
+          </>
         )}
       </CardContent>
     </Card>

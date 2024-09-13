@@ -39,9 +39,9 @@ const QueryBar = ({ fetchData }: QueryBarProps) => {
         <Input
           type="text"
           value={query}
-          onChange={(e) => setQuery(e.target.value)} // Convert input to lowercase
+          onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter Query"
-          className="w-full"
+          className="w-full bg-white"
           onFocus={() => setShowDropdown(true)} // Show dropdown when input is focused
           onBlur={() => setTimeout(() => setShowDropdown(false), 200)} // Hide dropdown when focus is lost with a delay
         />
