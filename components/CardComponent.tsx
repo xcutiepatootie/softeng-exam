@@ -1,32 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import ProcessedTreeView from "./ProcessedTreeView";
 
-type CardProps = {};
-
-const renderObject = (obj: any) => {
-  return (
-    <div>
-      {Object.entries(obj).map(([key, value]) => (
-        <div key={key} className="mb-2">
-          <strong>{key}:</strong>{" "}
-          {
-            typeof value === "object" && value !== null
-              ? renderObject(value) // Recursively render nested objects
-              : String(value) // Convert non-object values to string
-          }
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const CardComponent = ({
-  title,
-  content,
-}: {
+type CardProps = {
   title: string;
   content?: any;
-}) => {
-  const renderContent = () => {
+  isProcessed?: boolean;
+};
+
+const CardComponent = ({ title, content, isProcessed }: CardProps) => {
+  const renderContent = (): JSX.Element => {
     try {
       return (
         <div className="h-full w-full overflow-auto whitespace-pre-wrap">
@@ -44,7 +26,11 @@ const CardComponent = ({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent className="h-[640px] w-[540px] overflow-x-auto p-4">
-        {renderContent()}
+        {isProcessed ? (
+          <ProcessedTreeView data={content} />
+        ) : (
+          <>{renderContent()}</>
+        )}
       </CardContent>
     </Card>
   );

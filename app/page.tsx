@@ -18,6 +18,7 @@ export default function Home() {
           <CardComponent
             title="Processed URL Response:"
             content={processedData}
+            isProcessed={true}
           />
         </div>
       </div>
